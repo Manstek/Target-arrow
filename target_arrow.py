@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 
 class Target_arrow():
@@ -13,11 +14,16 @@ class Target_arrow():
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption('Target Arrow')
 
+        self.ship = Ship(self)
+
 
     def run_game(self):
         """Запуск основного цикла игры."""
         while True:
             self._check_events()
+
+            self.ship.update()
+
             self._update_screen()
     
 
@@ -39,6 +45,7 @@ class Target_arrow():
     def _update_screen(self):
         """Обновляет изображения на экране и отображает новый экран."""
         self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
 
         pygame.display.flip()
 
