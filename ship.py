@@ -9,7 +9,7 @@ class Ship:
         self.screen_rect = ta_game.screen.get_rect()
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
-        self.rect.left = self.screen_rect.left
+        self.rect.centery = self.screen_rect.centery
 
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
@@ -17,7 +17,10 @@ class Ship:
 
     def update(self):
         """Обновляет позицию корабля с учётом флага."""
-        pass
+        if self.settings.moving_up and self.rect.top >= 0:
+            self.rect.y -= self.settings.ship_speed
+        if self.settings.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.rect.y += self.settings.ship_speed
 
 
     def blitme(self):
