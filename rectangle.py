@@ -13,7 +13,7 @@ class Rectangle:
         self.height = self.settings.rectangle_height
 
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rect.right = self.screen_rect.right
+        self.rect.midtop = self.screen_rect.midtop
 
         self.y = float(self.rect.y)
     

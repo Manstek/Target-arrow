@@ -62,12 +62,13 @@ class Target_arrow():
         """Реагирует на нажатия клавиш."""
         if event.key == pygame.K_q:
             sys.exit()
-        elif event.key == pygame.K_UP:
-            self.settings.moving_up = True
-        elif event.key == pygame.K_DOWN:
-            self.settings.moving_down = True
-        elif event.key == pygame.K_SPACE:
-            self._fire_bullet()
+        if self.stats.game_active:
+            if event.key == pygame.K_UP:
+                self.settings.moving_up = True
+            elif event.key == pygame.K_DOWN:
+                self.settings.moving_down = True
+            elif event.key == pygame.K_SPACE:
+                self._fire_bullet()
     
 
     def _check_keyup_events(self, event):
@@ -96,17 +97,20 @@ class Target_arrow():
     def _update_bullets(self):
         """Обновляет позиции снярядов и удаляет вышедшие за пределы экрана."""
         self.bullets.update()
-
-        for bullet in self.bullets.copy():
-            if bullet.rect.x > self.settings.screen_width:
-                self.bullets.remove(bullet)
-        
-        self._check_bullet_rectangle_collisions()
+        if self.stats.bullets_left > 0:
+            for bullet in self.bullets.copy():
+                if bullet.rect.x > self.settings.screen_width:
+                    self.bullets.remove(bullet)
+                    self.stats.bullets_left -= 1
+            
+            self._check_bullet_rectangle_collisions()
+        else:
+            self.stats.game_active = False
 
 
     def _check_bullet_rectangle_collisions(self):
         """Проверяет коллизию снаряда и прямоугольника."""
-        collisions = pygame.sprite.spritecollideany(self.rectangle, self.bullets)
+        collisions = pygame.sprite.spritecollide(self.rectangle, self.bullets, True)
 
 
     def _update_rectangle(self):
