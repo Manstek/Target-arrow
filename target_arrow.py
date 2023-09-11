@@ -86,6 +86,10 @@ class Target_arrow():
             self.stats.reset_stats()
             self.stats.game_active = True
 
+            self.bullets.empty()
+            self.ship.center_ship()
+            self.rectangle.right_up_rectangle()
+
 
     def _fire_bullet(self):
         """Создание нового снаряда и включение его в группу bullets."""

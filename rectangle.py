@@ -13,7 +13,7 @@ class Rectangle:
         self.height = self.settings.rectangle_height
 
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rect.midtop = self.screen_rect.midtop
+        self.rect.right = self.screen_rect.right
 
         self.y = float(self.rect.y)
     
@@ -37,4 +37,8 @@ class Rectangle:
         pygame.draw.rect(self.screen, self.color, self.rect)
     
 
-        
+    def right_up_rectangle(self):
+        """Расcпологает прямоугольник в правом верхнем углу."""
+        self.rect.topright = self.screen_rect.topright
+        self.y = float(self.rect.y)
+
