@@ -83,6 +83,8 @@ class Target_arrow():
         """Проверяет наживает ли игрок на кнопку мышкой."""
         button_cliced = self.play_button.rect.collidepoint(mouse_pos)
         if button_cliced and not self.stats.game_active:
+            self.settings.initialize_dynamic_settings()
+            
             self.stats.reset_stats()
             self.stats.game_active = True
 
@@ -108,6 +110,7 @@ class Target_arrow():
                     self.stats.bullets_left -= 1
             
             self._check_bullet_rectangle_collisions()
+            self.settings.increase_speed()
         else:
             self.stats.game_active = False
 

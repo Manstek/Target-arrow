@@ -16,11 +16,22 @@ class Settings:
         self.bullets_allowed = 3
         self.bullets_limit = 3
 
-        self.rectangle_speed = 0.1
         self.rectangle_width = 50
         self.rectangle_height = 100
         self.rectangle_color = (0, 0, 255)
-        self.fleet_direction = 1 # 1 move down, -1 move up 
+        self.fleet_direction = 1 # 1 move down, -1 move up
 
-    
-        
+        self.speedup_scale = 1.1
+
+        self.initialize_dynamic_settings()
+
+
+    def initialize_dynamic_settings(self):
+        """Инициализирует настройки, изменяющиеся в ходе игры."""
+        self.rectangle_speed = 0.1
+
+
+    def increase_speed(self):
+        """Увеличивает настройки скорости."""
+        self.rectangle_speed *= self.speedup_scale
+        self.rectangle_speed *= self.speedup_scale
