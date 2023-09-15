@@ -34,4 +34,4 @@ class Settings:
     def increase_speed(self):
         """Увеличивает настройки скорости."""
         self.rectangle_speed *= self.speedup_scale
-        self.rectangle_speed *= self.speedup_scale
+

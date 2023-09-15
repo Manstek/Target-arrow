@@ -1,12 +1,11 @@
 import pygame
-from settings import Settings
 
 
 class Rectangle:
     """Класс для управления прямоугольником."""
     def __init__(self, ta_game):
-        self.settings = Settings()
         self.screen = ta_game.screen
+        self.settings = ta_game.settings
         self.screen_rect = self.screen.get_rect()
         self.color = self.settings.rectangle_color
         self.width = self.settings.rectangle_width
@@ -22,7 +21,7 @@ class Rectangle:
         """Непрерывное движение корабля вниз/вверх."""
         self.y += (self.settings.rectangle_speed * self.settings.fleet_direction)
         self.rect.y = self.y
-    
+
 
     def check_edges(self):
         """Смена направления прямоугольника, если он находится максималь сверху или снизу."""
@@ -40,5 +39,4 @@ class Rectangle:
     def right_up_rectangle(self):
         """Расcпологает прямоугольник в правом верхнем углу."""
         self.rect.topright = self.screen_rect.topright
-        self.y = float(self.rect.y)
 
